@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>구구단</title>
+</head>
+<body>
+<div id="root">
+   <div> {{firstNum}}곱하기 {{secondNum}}은?</div>
+    <form v-on:submit="clickButton">
+        <input type="number" v-model="value" ref="answer" autofocus>
+        <!--
+            v-model은 양방향 바인딩으로 form태그에서 주로 쓰임
+            ref는 코드로 접근할 수 없을때 사용 
+        -->
+        <button type="submit">입력</button>
+    </form>
+    <div>{{result}}</div>
+</div>
+</body>
+<script>
+    const app=new Vue({
+        el:'#root',
+        data: {
+            firstNum:Math.ceil(Math.random()*9),
+            secondNum:Math.ceil(Math.random()*9),
+            value:'',
+            result:'',
+        },
+        methods:{
+            clickButton(e) {
+                e.preventDefault(); // 새로고침 안함
+                console.log(this);
+                if(this.firstNum*this.secondNum == this.value) {
+                    this.result=this.value+"이므로 정답입니다!";
+                    this.value='';
+                    this.firstNum=Math.ceil(Math.random()*9);
+                    this.secondNum=Math.ceil(Math.random()*9);
+                    this.$refs.answer.focus();
+                } else {
+                    this.result=this.value+"이므로 틀렸습니다!";
+                    this.value='';
+                }
+            },
+
+        }
+    })
+
+</script>
+</html>

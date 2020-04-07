@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <title>끝말잇기</title>
+</head>
+<body>
+<div id="root">
+    <word-relay start-word="사과"></word-relay>
+    <word-relay start-word="바나나"></word-relay>
+    <word-relay start-word="망고"></word-relay>
+</div>
+</body>
+<script>
+    /*
+        컴포넌트는 인스턴스보다 위에 위치해야됨
+        스크립트는 div#root보다는 아래에 위치해야됨
+        start word->html: start-word
+                  ->script:자동으로 startWord로 변환됨
+    */
+    Vue.component('word-relay', { // 전역 컴포넌트
+        props:['startWord'],
+        data() { 
+            return {
+                word:this.startWord,
+                value:'',
+                result:'',
+            }
+        },
+        template: `
+            <div>
+                <div> {{ word }}</div>
+                <form v-on:submit="clickButton">
+                    <input type="string" v-model="value" ref="answer" autofocus>
+                    <button type="submit">입력</button>
+                </form>
+                <div>{{result}}</div>
+            </div>
+        `,
+        methods:{
+            clickButton(e) {
+                e.preventDefault();
+                if(this.word[this.word.length-1]==this.value[0]) {
+                    this.result='끝말잇기 성공!';
+                    this.word=this.value;
+                    this.value='';
+                    this.$refs.answer.focus();
+                } else {
+                    this.result='끝말잇기 실패!';
+                }
+
+
+            }
+
+        }
+
+    })
+    const app=new Vue({
+        el:'#root',
+        data: {
+        
+
+        },
+        methods:{
+            
+        }
+    })
+
+</script>
+</html>
