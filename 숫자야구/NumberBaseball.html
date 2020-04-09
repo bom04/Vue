@@ -6,18 +6,9 @@
   <title>숫자야구</title>
 </head>
 <body>
-<div id="root">
-    <script src="/dist/app.js"></script>
-</div>
+    <div id="root"></div>
+    <script src="./dist/app.js"></script> 
+    <!--main.js와 NumberBaseball.vue를 합쳐서 
+        /dist/app.js로 만들어져야 실행됨(webpack이 만들어줌) -->
 </body>
-<script>
-    const app=new Vue({
-        el:'#root',
-        data:{
-        },
-        methods: {
-           
-        }
-    });
-</script>
 </html>
