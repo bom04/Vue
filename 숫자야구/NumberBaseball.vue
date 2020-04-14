@@ -42,7 +42,7 @@
     methods: {
       onSubmitForm() {
         console.log('정답:'+this.answer);
-        if (this.value === this.answer.join('')) { // 정답이면
+        if (this.value == this.answer.join('')) { // 정답이면
           this.tries.push({
             try: this.value,
             result: '홈런',
@@ -58,7 +58,7 @@
           let ball = 0;
           const answerArray = this.value.split('').map(v => parseInt(v));
           for (let i = 0; i < 4; i += 1) {
-            if (answerArray[i] === this.answer[i]) { // 숫자 자릿수 모두 정답
+            if (answerArray[i] == this.answer[i]) { // 숫자 자릿수 모두 정답
               strike++;
             } else if (this.answer.includes(answerArray[i])) { // 숫자만 정답
               ball++;
