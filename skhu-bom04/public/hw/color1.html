@@ -1,0 +1,55 @@
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <style>
+         div { padding: 30px; margin: 30px auto; max-width: 600px; 
+      border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa; }
+    table { border-collapse: collapse; margin: 40px auto; }
+    td { width: 50px; height: 50px; border: 1px solid gray; font-size: 20pt; 
+      text-align: center; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <table style="border-collapse: collapse;text-align: center;">
+        <tr v-for="(i,item) in matrix">
+            <td v-for="j in i" @click="onClick(j-1)" v-bind:style="{backgroundColor: color(j-1)}" style="padding:10px;border:1px solid black;">
+                {{j}}
+            </td>
+        </tr>
+    </table>
+  </div>
+
+  <script type="text/javascript">
+    var app = new Vue({
+      el: '#app',
+      data: {
+          matrix:[],
+          count:1,
+          isClicked:[],
+      },
+      created() {
+        for(let i=0;i<3;i++) {
+            this.matrix[i]=[]
+            for(let j=0;j<3;j++) {
+                this.matrix[i][j]=this.count++
+            }
+        }
+        for(let i=0;i<9;i++) {
+            this.isClicked[i]=false
+        }
+      },
+      methods: {
+        onClick(value) {
+            this.isClicked[value]=!this.isClicked[value]
+            this.$forceUpdate()
+        },
+        color(value) {
+            return this.isClicked[value]?"yellow":"white"
+        }
+      }
+    })
+   </script>
+</body>    
+</html>
