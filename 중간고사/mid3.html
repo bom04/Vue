@@ -5,15 +5,18 @@
   <style>
     div#app { padding: 30px; margin: 30px auto; max-width: 600px; 
       border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
-      div#list {display:inline-block}
+      div#list {display:inline-block;border:1px solid black}
     /* button { padding: 0.5em 2em; } */
   </style>
 </head>
 <body>
   <div id="app">
-        <input type="text" v-bind:value="value" v-model="value">
+        <input type="text" v-model="value">
         <button type="button" v-on:click="create">생성</button>
-        <div id="list"></div>
+        <button id="list" v-show="!array" v-for="i in array" value="i"></button>
+        <ul v-if="!array" >
+            <li v-for="(i,index) in array" v-bind:key="index">{{i}}</li>
+        </ul>
     </div>
   <script type="text/javascript">
     var app = new Vue({
@@ -25,8 +28,9 @@
       methods: {
         create() {
           for(let i=0;i<this.value;i++) {
-            this.array.push=parseInt(Math.random()*10)
+            this.array.push(parseInt(Math.random()*10))
           }
+          console.log(this.array)
         },
         
       }
