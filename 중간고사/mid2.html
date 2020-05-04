@@ -6,30 +6,30 @@
     div#app { padding: 30px; margin: 30px auto; max-width: 600px; 
       border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
       div#app {display:inline-block}
+      div#box {margin:20px auto;width:100px;height:100px;background-color: yellow;border:1px solid black}
     /* button { padding: 0.5em 2em; } */
   </style>
 </head>
 <body>
   <div id="app">
       <div>
-        <input type="text" v-bind:value="value" v-model="value">
-        <button type="button" v-on:click="increase">++</button>
-        <button type="button" v-on:click="decrease">--</button>
+        <button type="button" v-on:click="show" v-bind:disabled="!result">보이기</button>
+        <button type="button" v-on:click="hide" v-bind:disabled="result">감추기</button>
+        <div id="box" v-show="!result"></div>
       </div>
   </div>
-
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
       data: {
-        value:0
+        result:false
       },
       methods: {
-        increase() {
-          this.value++;
+        show() {
+          this.result=!this.result
         },
-        decrease() {
-          this.value--;
+        hide() {
+            this.result=!this.result
         }
       }
     })

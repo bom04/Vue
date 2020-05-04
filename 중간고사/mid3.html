@@ -5,32 +5,30 @@
   <style>
     div#app { padding: 30px; margin: 30px auto; max-width: 600px; 
       border: 1px solid #ccc; box-shadow: 3px 3px 3px #aaa;  }
-      div#app {display:inline-block}
+      div#list {display:inline-block}
     /* button { padding: 0.5em 2em; } */
   </style>
 </head>
 <body>
   <div id="app">
-      <div>
         <input type="text" v-bind:value="value" v-model="value">
-        <button type="button" v-on:click="increase">++</button>
-        <button type="button" v-on:click="decrease">--</button>
-      </div>
-  </div>
-
+        <button type="button" v-on:click="create">생성</button>
+        <div id="list"></div>
+    </div>
   <script type="text/javascript">
     var app = new Vue({
       el: '#app',
       data: {
-        value:0
+        value:0,
+        array:[]
       },
       methods: {
-        increase() {
-          this.value++;
+        create() {
+          for(let i=0;i<this.value;i++) {
+            this.array.push=parseInt(Math.random()*10)
+          }
         },
-        decrease() {
-          this.value--;
-        }
+        
       }
     })
    </script>
