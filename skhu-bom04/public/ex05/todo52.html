@@ -54,15 +54,15 @@
           this.todo = {};
         },
         save: function() {
-          axios.post('https://skhu-lsj.firebaseio.com/todo4.json', this.todo);
+          axios.post('https://skhu-bom04.firebaseio.com/todo4.json', this.todo);
           this.showDialog = false;
         }
       }
     })
 
     window.onload = function() {
-      axios.get('https://skhu-lsj.firebaseio.com/todo4.json')
-           .then(response => app.todoMap = response.data);
+      axios.get('https://skhu-bom04.firebaseio.com/todo4.json')
+           .then(response => app.todoMap = response.data || {});
     }
    </script>
 </body>

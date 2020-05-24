@@ -56,7 +56,7 @@
           this.todo = {};
         },
         reload: function() {
-          axios.get('https://skhu-lsj.firebaseio.com/todo4.json')
+          axios.get('https://skhu-bom04.firebaseio.com/todo4.json')
                .then(response => this.todoMap = response.data);
         },
         edit: function(key) {
@@ -66,16 +66,16 @@
         },
         save: function() {
           if (this.showDialog == "등록")
-            axios.post('https://skhu-lsj.firebaseio.com/todo4.json', this.todo)
+            axios.post('https://skhu-bom04.firebaseio.com/todo4.json', this.todo)
                  .then(response => this.reload());
           else
-            axios.put('https://skhu-lsj.firebaseio.com/todo4/' + this.selectedKey + '.json', this.todo)
+            axios.put('https://skhu-bom04.firebaseio.com/todo4/' + this.selectedKey + '.json', this.todo)
                  .then(response => this.reload());
           this.showDialog = false;
         },
         remove: function() {
           if (confirm("삭제하시겠습니까?") == false) return;
-          axios.delete('https://skhu-lsj.firebaseio.com/todo4/' + this.selectedKey + '.json')
+          axios.delete('https://skhu-bom04.firebaseio.com/todo4/' + this.selectedKey + '.json')
                  .then(response => this.reload());
           this.showDialog = false;
         }

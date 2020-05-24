@@ -54,11 +54,11 @@
           this.todo = {};
         },
         reload: function() {
-          axios.get('https://skhu-lsj.firebaseio.com/todo4.json')
+          axios.get('https://skhu-bom04.firebaseio.com/todo4.json')
                .then(response => this.todoMap = response.data);
         },
         save: function() {
-          axios.post('https://skhu-lsj.firebaseio.com/todo4.json', this.todo)
+          axios.post('https://skhu-bom04.firebaseio.com/todo4.json', this.todo)
                .then(response => this.reload());
           this.showDialog = false;
         }
